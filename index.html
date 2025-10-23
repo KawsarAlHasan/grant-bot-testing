@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Grant Bot AI – Demo Project</title>
+    <meta
+      name="description"
+      content="A demo project to test Grant Bot AI with Anonymous, Free, and Premium user modes. Built with HTML, CSS, and JavaScript."
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .accent {
+        color: #00d1b2;
+      }
+
+      #button {
+        text-align: center;
+        margin: 30px 0;
+      }
+
+      #button button {
+        margin: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        background: #00d1b2;
+        color: white;
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+
+      #button button:hover {
+        background: #00a28a;
+      }
+
+      /* ✅ Active button */
+      #button button.active {
+        background: #0077cc;
+        transform: scale(1.05);
+      }
+
+      /* ✅ Active card */
+      .card.active {
+        border: 2px solid #0077cc;
+        box-shadow: 0 0 10px rgba(0, 119, 204, 0.3);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" aria-label="Home"
+          >Demo<span class="accent">Site</span></a
+        >
+
+        <button
+          id="navToggle"
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="primaryNav"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav id="primaryNav" class="primary-nav" role="navigation">
+          <ul>
+            <li><a>Home</a></li>
+            <li><a>Features</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="container">
+          <h1>Testing Grant Bot AI in a Demo Environment</h1>
+          <p class="lead">
+            This demo lets you test the Grant Bot AI in three modes: Anonymous,
+            Free, and Premium users.
+          </p>
+        </div>
+      </section>
+
+      <!-- ✅ Button Section -->
+      <section id="button" class="button">
+        <h2>Select Chat Mode to Start</h2>
+        <p>Choose a user type to test the bot’s behavior and access levels.</p>
+
+        <button id="anonBtn">Anonymous User</button>
+        <button id="freeBtn">Free User</button>
+        <button id="premiumBtn">Premium User</button>
+      </section>
+
+      <section id="features" class="container features">
+        <h2>Features</h2>
+        <div class="cards">
+          <article
+            class="card"
+            id="cardAnon"
+            tabindex="0"
+            aria-labelledby="card1-title"
+          >
+            <h3 id="card1-title">Anonymous User</h3>
+            <p>
+              Anonymous users can chat with the bot without logging in. Limited
+              access only.
+            </p>
+          </article>
+
+          <article
+            class="card"
+            id="cardFree"
+            tabindex="0"
+            aria-labelledby="card2-title"
+          >
+            <h3 id="card2-title">Free User</h3>
+            <p>
+              Free users are registered and can access more basic features of
+              Grant Bot AI.
+            </p>
+          </article>
+
+          <article
+            class="card"
+            id="cardPremium"
+            tabindex="0"
+            aria-labelledby="card3-title"
+          >
+            <h3 id="card3-title">Premium User</h3>
+            <p>
+              Premium users enjoy full access, priority responses, and advanced
+              AI features.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="container">
+          <p>
+            © <span id="year"></span> Grant Bot AI — Built for testing and
+            development.
+          </p>
+        </div>
+      </footer>
+
+      <!-- ✅ Dynamic Chat Iframe -->
+      <iframe
+        id="chatIframe"
+        title="AI Chatbot"
+        src="https://ai-chat-bot-five-sooty.vercel.app/chat"
+        style="
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 500px;
+          height: 1000px;
+          border: none;
+          z-index: 9999;
+          background: transparent;
+        "
+        allow="clipboard-read; clipboard-write"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+      ></iframe>
+    </main>
+
+    <!-- ✅ JavaScript -->
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const iframe = document.getElementById("chatIframe");
+
+      const links = {
+        anon: "https://ai-chat-bot-five-sooty.vercel.app/chat",
+        free: "https://ai-chat-bot-five-sooty.vercel.app/chat?email=freeemail@gmail.com",
+        premium:
+          "https://ai-chat-bot-five-sooty.vercel.app/chat?email=bdcalling.showkat@gmail.com",
+      };
+
+      const buttons = {
+        anon: document.getElementById("anonBtn"),
+        free: document.getElementById("freeBtn"),
+        premium: document.getElementById("premiumBtn"),
+      };
+
+      const cards = {
+        anon: document.getElementById("cardAnon"),
+        free: document.getElementById("cardFree"),
+        premium: document.getElementById("cardPremium"),
+      };
+
+      function setActive(mode) {
+        // ✅ Change iframe
+        iframe.src = links[mode];
+
+        // ✅ Remove active class from all buttons and cards
+        Object.values(buttons).forEach((btn) => btn.classList.remove("active"));
+        Object.values(cards).forEach((card) => card.classList.remove("active"));
+
+        // ✅ Add active class to clicked button and corresponding card
+        buttons[mode].classList.add("active");
+        cards[mode].classList.add("active");
+      }
+
+      // ✅ Button events
+      buttons.anon.addEventListener("click", () => setActive("anon"));
+      buttons.free.addEventListener("click", () => setActive("free"));
+      buttons.premium.addEventListener("click", () => setActive("premium"));
+
+      // Responsive nav toggle
+      const navToggle = document.getElementById("navToggle");
+      const primaryNav = document.getElementById("primaryNav");
+      navToggle.addEventListener("click", () => {
+        const expanded =
+          navToggle.getAttribute("aria-expanded") === "true" || false;
+        navToggle.setAttribute("aria-expanded", !expanded);
+        primaryNav.classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>

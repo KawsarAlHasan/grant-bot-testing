@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Simple Demo Project</title>
+    <meta
+      name="description"
+      content="A small demo HTML project with responsive layout and simple JS interactivity."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="#" aria-label="Home"
+          >Demo<span class="accent">Site</span></a
+        >
+
+        <button
+          id="navToggle"
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="primaryNav"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav id="primaryNav" class="primary-nav" role="navigation">
+          <ul>
+            <li><a>Home</a></li>
+            <li><a>Features</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="container">
+          <h1>Welcome to the Simple Demo Project</h1>
+          <p class="lead">
+            A small, responsive HTML demo with accessible markup and a bit of
+            JavaScript.
+          </p>
+        </div>
+      </section>
+
+      <!-- button section -->
+      <section id="button" class="button">
+        Anonimus user button   // https://ai-chat-bot-five-sooty.vercel.app/chat
+        free user button   // https://ai-chat-bot-five-sooty.vercel.app/chat?email=freeemail@gmail.com
+        premium user button // https://ai-chat-bot-five-sooty.vercel.app/chat?email=bdcalling.showkat@gmail.com"
+
+      </section>
+
+      <section id="features" class="container features">
+        <h2>Features</h2>
+        <div class="cards">
+          <article class="card" tabindex="0" aria-labelledby="card1-title">
+            <h3 id="card1-title">Responsive layout</h3>
+            <p>
+              Works on phone, tablet, and desktop using flexible CSS and media
+              queries.
+            </p>
+          </article>
+
+          <article class="card" tabindex="0" aria-labelledby="card2-title">
+            <h3 id="card2-title">Accessible markup</h3>
+            <p>
+              Semantic HTML, meaningful alt text, keyboard focus, and ARIA where
+              helpful.
+            </p>
+          </article>
+
+          <article class="card" tabindex="0" aria-labelledby="card3-title">
+            <h3 id="card3-title">Interactive form</h3>
+            <p>Simple client-side validation and friendly messages.</p>
+          </article>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="container">
+          <p>© <span id="year"></span> DemoSite — built for learning.</p>
+        </div>
+      </footer>
+
+      <iframe
+        src="https://ai-chat-bot-five-sooty.vercel.app/chat?email=bdcalling.showkat@gmail.com"
+        title="AI Chatbot"
+        style="
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 500px;
+          height: 1000px;
+          border: none;
+          z-index: 9999;
+          background: transparent;
+        "
+        allow="clipboard-read; clipboard-write"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+      ></iframe>
+    </main>
+
+    <script src="script.js" defer></script>
+    <!-- 
+    <iframe
+      id="chatIframe"
+      title="AI Chatbot"
+      style="
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 500px;
+        height: 1000px;
+        border: none;
+        z-index: 9999;
+        background: transparent;
+      "
+      allow="clipboard-read; clipboard-write"
+      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+    ></iframe> -->
+
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("authToken");
+
+        if (token) {
+          const iframe = document.getElementById("chatIframe");
+          iframe.src = `http://localhost:5175?token=${encodeURIComponent(
+            token
+          )}`;
+        } else {
+          console.warn("");
+        }
+      });
+    </script> -->
+  </body>
+</html>
