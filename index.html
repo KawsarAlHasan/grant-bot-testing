@@ -174,8 +174,7 @@
         <p>Choose a user type to test the bot’s behavior and access levels.</p>
 
         <button id="anonBtn">Anonymous User</button>
-        <button id="freeBtn">Free User</button>
-        <button id="premiumBtn">Premium User</button>
+        <button id="freeBtn">Registered User</button>
       </section>
 
       <section id="features" class="container features">
@@ -200,22 +199,10 @@
             tabindex="0"
             aria-labelledby="card2-title"
           >
-            <h3 id="card2-title">Free User</h3>
+            <h3 id="card2-title">Registered User</h3>
             <p>
               Free users are registered and can access more basic features of
-              Grant Bot AI.
-            </p>
-          </article>
-
-          <article
-            class="card"
-            id="cardPremium"
-            tabindex="0"
-            aria-labelledby="card3-title"
-          >
-            <h3 id="card3-title">Premium User</h3>
-            <p>
-              Premium users enjoy full access, priority responses, and advanced
+              Grant Bot AI and Premium users enjoy full access, priority responses, and advanced
               AI features.
             </p>
           </article>
@@ -254,8 +241,8 @@
     <!-- Email Input Modal -->
     <div id="emailModal" class="modal">
       <div class="modal-content">
-        <h3 id="modalTitle">Enter Your Email</h3>
-        <p id="modalDescription">Please enter your email address to continue as a Free user.</p>
+        <h3 id="modalTitle">Enter Your Login Email for Access</h3>
+        <p id="modalDescription">Please enter your email address to continue as a Registered user.</p>
         <input type="email" id="emailInput" class="email-input" placeholder="your@email.com" />
         <div class="modal-buttons">
           <button id="cancelBtn" class="cancel-btn">Cancel</button>
@@ -280,14 +267,12 @@
 
       const buttons = {
         anon: document.getElementById("anonBtn"),
-        free: document.getElementById("freeBtn"),
-        premium: document.getElementById("premiumBtn"),
+        free: document.getElementById("freeBtn")
       };
 
       const cards = {
         anon: document.getElementById("cardAnon"),
-        free: document.getElementById("cardFree"),
-        premium: document.getElementById("cardPremium"),
+        free: document.getElementById("cardFree")
       };
 
       function setActive(mode, email = "") {
@@ -296,8 +281,6 @@
         if (mode === "anon") {
           url = "https://ai-chat-bot-five-sooty.vercel.app/chat";
         } else if (mode === "free") {
-          url = `https://ai-chat-bot-five-sooty.vercel.app/chat?email=${encodeURIComponent(email)}`;
-        } else if (mode === "premium") {
           url = `https://ai-chat-bot-five-sooty.vercel.app/chat?email=${encodeURIComponent(email)}`;
         }
         
@@ -317,11 +300,8 @@
         currentMode = mode;
         
         if (mode === "free") {
-          modalTitle.textContent = "Enter Your Email for Free Access";
-          modalDescription.textContent = "Please enter your email address to continue as a Free user.";
-        } else if (mode === "premium") {
-          modalTitle.textContent = "Enter Your Email for Premium Access";
-          modalDescription.textContent = "Please enter your email address to continue as a Premium user.";
+          modalTitle.textContent = "Enter Your Login Email for Access";
+          modalDescription.textContent = "Please enter your email address to continue as a Registered user.";
         }
         
         emailInput.value = "";
@@ -341,7 +321,6 @@
       // ✅ Button events
       buttons.anon.addEventListener("click", () => setActive("anon"));
       buttons.free.addEventListener("click", () => showEmailModal("free"));
-      buttons.premium.addEventListener("click", () => showEmailModal("premium"));
 
       // Modal events
       cancelBtn.addEventListener("click", hideEmailModal);
